@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Buy groceries",
+    "date": "2026-10-30",
+    "description": "Milk, bread, eggs and vegetables."
+  },
+  {
+    "id": 2,
+    "name": "Prepare demo notes",
+    "date": "2026-11-01",
+    "description": "Summarize progress and highlight blockers."
+  },
+  {
+    "id": 3,
+    "name": "Book dentist appointment",
+    "date": "",
+    "description": "Find an available morning slot."
+  }
+]

@@ -6,6 +6,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run start:mock-server`
+
+Runs the mock Node.js backend on [http://localhost:7000](http://localhost:7000).
+
+The backend serves default to-do data from `static-mock-server/mock-data/todos.json` every time it starts and exposes these endpoints:
+
+- `GET /todos` - get all to-dos
+- `GET /todos/:id` - get a single to-do
+- `POST /todos` - create a to-do
+- `PUT /todos/:id` - update a to-do
+- `DELETE /todos/:id` - delete a to-do
+
 ### `npm start`
 
 Runs the app in the development mode.\
