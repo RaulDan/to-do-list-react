@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:mock-server": "node static-mock-server/server.js",
-    "start-all": "concurrently \"npm run start\" \"npm run start:mock-server\"",
+    "start-all-react": "concurrently \"npm run start\" \"npm run start:mock-server\"",
     "build": "react-scripts build",
     "build-src": "react-scripts build && node afterBuild.js",
     "test": "react-scripts test",

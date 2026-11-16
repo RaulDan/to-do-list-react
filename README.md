@@ -26,6 +26,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Iframe host
+
+This application is embedded by the root-level [iframe host](../index.html) and
+[alternate host](../index-webEl.html) at
+`http://localhost:3000/`. Start its frontend and mock backend together before
+opening the host:
+
+```bash
+npm run start-all-react
+```
+
+The host also requires the Angular app on port 4200 and the Svelte app on port
+5000. For a production deployment, configure the web server serving this app
+to allow the host origin to frame it; do not send `X-Frame-Options: DENY` or a
+`Content-Security-Policy` `frame-ancestors` directive that excludes the host.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
