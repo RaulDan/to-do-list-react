@@ -18,8 +18,9 @@
   "scripts": {
     "start": "react-scripts start",
     "start:mock-server": "node static-mock-server/server.js",
-    "start-all": "concurrently \"npm run start\" \"npm run start:mock-server\"",
+    "start-all-react": "concurrently \"npm run start\" \"npm run start:mock-server\"",
     "build": "react-scripts build",
+    "build-web-component-react": "node -e \"process.env.BABEL_ENV = process.env.NODE_ENV = 'production'; process.env.BUILD_PATH = 'build/to-do-list-web-component'; require('react-scripts/config/env'); const path = require('path'); const paths = require('react-scripts/config/paths'); paths.appIndexJs = path.resolve('src/index.webComponent.js'); const configPath = require.resolve('react-scripts/config/webpack.config'); const originalConfig = require(configPath); require.cache[configPath].exports = (env) => { const config = originalConfig(env); config.output.filename = 'static/js/[name].js'; config.output.chunkFilename = 'static/js/[name].chunk.js'; config.plugins.filter(p => p.constructor.name === 'MiniCssExtractPlugin').forEach(p => { p.options.filename = 'static/css/[name].css'; p.options.chunkFilename = 'static/css/[name].chunk.css'; }); return config; }; require('react-scripts/scripts/build');\"",
     "build-src": "react-scripts build && node afterBuild.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
