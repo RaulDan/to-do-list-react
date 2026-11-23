@@ -13,13 +13,22 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@babel/core": "^7.29.0",
+    "@babel/preset-react": "^7.28.5",
+    "babel-loader": "^10.0.0",
+    "concurrently": "^9.2.1",
+    "html-webpack-plugin": "^5.6.6",
+    "webpack": "^5.106.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "start:mock-server": "node static-mock-server/server.js",
-    "start-all": "concurrently \"npm run start\" \"npm run start:mock-server\"",
+    "start-all-react": "concurrently \"npm run start\" \"npm run start:mock-server\"",
     "build": "react-scripts build",
+    "build:federation": "webpack --config webpack.federation.config.cjs --mode production",
+    "start:federation": "webpack serve --config webpack.federation.config.cjs --mode development",
     "build-src": "react-scripts build && node afterBuild.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
