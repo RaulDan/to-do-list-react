@@ -17,20 +17,33 @@ export async function mount({ domElement }) {
   const target = document.createElement('div');
   shadow.append(style, target);
   domElement.replaceChildren(host);
-  root = createRoot(target, {
-    onUncaughtError(error) {
-      const message = document.createElement('p');
-      message.setAttribute('role', 'alert');
-      message.textContent = `Could not render the to-do app: ${error.message}`;
-      shadow.append(message);
-      console.error('Could not render the to-do app:', error);
-    },
-  });
-  root.render(<App />);
+  try {
+    root = createRoot(target, {
+      onUncaughtError(error) {
+        const message = document.createElement('p');
+        message.setAttribute('role', 'alert');
+        message.textContent = `Could not render the to-do app: ${error.message}`;
+        shadow.append(message);
+        console.error('Could not render the to-do app:', error);
+      },
+    });
+    root.render(<App />);
+  } catch (error) {
+    try {
+      root?.unmount();
+    } finally {
+      root = undefined;
+      host.remove();
+    }
+    throw error;
+  }
 }
 
 export async function unmount({ domElement }) {
-  if (root) root.unmount();
-  root = undefined;
-  domElement.replaceChildren();
+  try {
+    if (root) root.unmount();
+  } finally {
+    root = undefined;
+    domElement.replaceChildren();
+  }
 }
