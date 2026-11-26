@@ -10,6 +10,7 @@
 
 # production
 /build
+/public/single-spa
 
 # misc
 .DS_Store

@@ -13,15 +13,19 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.25.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "start:mock-server": "node static-mock-server/server.js",
-    "start-all-react": "concurrently \"npm run start\" \"npm run start:mock-server\"",
+    "prestart-all-react": "npm run build:single-spa",
+    "start-all-react": "concurrently -k -n standalone,api,watch \"npm run start\" \"npm run start:mock-server\" \"npm run watch:single-spa\"",
     "build": "react-scripts build",
     "build-src": "react-scripts build && node afterBuild.js",
     "test": "react-scripts test",
+    "build:single-spa": "node build-single-spa.mjs",
+    "watch:single-spa": "node build-single-spa.mjs --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

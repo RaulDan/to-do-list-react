@@ -22,6 +22,7 @@ The backend serves default to-do data from `static-mock-server/mock-data/todos.j
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The development server does not open a browser automatically.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -80,3 +81,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Single-spa
+
+Run `npm run start-all-react` to start the standalone app and watched
+single-spa bundle on port 3000, and the mock API on 7000. Hosts load
+`http://localhost:3000/single-spa/single-spa.js`. Alternatively,
+`npm run build:single-spa` produces the remote JavaScript and CSS in
+`public/single-spa`, and `npm run watch:single-spa` rebuilds on changes.
+Set `REACT_APP_TODO_API_URL` at build time to override the mock API URL.
+The generated files are also copied into standalone production builds when present.
