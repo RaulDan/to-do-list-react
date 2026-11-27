@@ -2,6 +2,31 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Module Federation mode
+
+```sh
+npm ci
+npm run serve:federation
+```
+
+Start `npm run start:mock-server` separately for the API on 7000. Stop standalone
+`npm start` first: both modes use port 3000. The entry is
+`http://localhost:3000/remoteEntry.js`, container `todo_list`, exposing `./mount`
+to Angular host 4201 and React host 3001.
+
+`npm run build:federation` emits `build/federation`. Deploy the entry and all
+chunks together with CORS allowing host origins. Standalone CRA builds clear
+`build`, so run federation builds afterward if both artifacts are needed.
+The dedicated Webpack build reuses `App` and its styles; standalone CRA scripts
+remain unchanged.
+
+Each mount creates its own React 19 root and Shadow DOM styles and returns an
+idempotent disposer. Do not share its React runtime with the React 18 host.
+Set `REACT_APP_TODO_API_URL` in the build process environment to change the API
+URL (default `http://localhost:7000`). For PowerShell:
+`$env:REACT_APP_TODO_API_URL = 'https://example.com'; npm run build:federation`.
+The federation configuration reads process environment, not CRA's `.env` loader.
+
 ## Available Scripts
 
 In the project directory, you can run:
